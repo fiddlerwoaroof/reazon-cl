@@ -15,6 +15,8 @@
 (defun equal (a b)
   (if (vectorp a)
       (and (vectorp b)
+           (= (length a)
+              (length b))
            (every 'cl:equal a b))
       (cl:equal a b)))
 
@@ -80,7 +82,8 @@
              (unify (cdr u-walked)
                     (cdr v-walked)
                     sub))))
-      (t *false*))))
+      (t
+       *false*))))
 
 (defun == (u v)
   (lambda (sub)
@@ -174,9 +177,9 @@ This primitive goal always fails."
          (extend walked name sub)))
       ((consp walked)
        (let ((sub (reify-sub (car walked)
-                                     sub)))
+                             sub)))
          (reify-sub (cdr walked)
-                            sub)))
+                    sub)))
       (t
        sub))))
 

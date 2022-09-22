@@ -30,6 +30,58 @@
      ,arg
      ,@body))
 
+(parachute:define-test reazon-==
+  :parent reazon
+  ()
+  (parachute:is equal '("")
+                (reazon:run* x
+                  (reazon:== "" x)))
+  (parachute:is equal '("")
+                (reazon:run* x
+                  (reazon:== x "")))
+  (parachute:is equal '(("a" "b"))
+                (reazon:run* (x y)
+                  (reazon:== (list x y)
+                             (list "a" "b")))))
+
+(parachute:define-test reazon-caro
+  :parent reazon
+  ()
+  (rt-should-equal '("a")
+    (reazon:run* x
+      (reazon:caro '("a") x))
+    (reazon:run* x
+      (reazon:caro '("a") x)
+      (reazon:fresh (d)
+        (reazon:conso x d '("a")))))
+  (rt-should-equal '("")
+    (reazon:run* x
+      (reazon:caro '("") x)
+      (reazon:fresh (d)
+        (reazon:conso x d '(""))))))
+
+(parachute:define-test reazon-cdro
+  :parent reazon
+  ()
+  (rt-should-equal '("a")
+    (reazon:run* x
+      (reazon:cdro '(_ . "a") x))
+    (reazon:run* x
+      (reazon:cdro '(_ . "a") x)
+      (reazon:fresh (a)
+        (reazon:conso a x '(_ . "a"))))))
+
+(parachute:define-test reazon-appendo
+  :parent reazon
+  ()
+  (rt-should-equal '((1 2 3)
+                     (2 3)
+                     (3)
+                     ())
+    (reazon:run* x
+      (reazon:fresh (a)
+        (reazon:appendo a x '(1 2 3))))))
+
 (parachute:define-test rt-interface-run
   :parent reazon
   ()
