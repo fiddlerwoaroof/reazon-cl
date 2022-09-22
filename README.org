@@ -1,0 +1,5 @@
+* REAZON-CL: a port of [[https://github.com/nickdrozd/reazon][reazon]] to Common Lisp
+
+This is a mostly bug-compatible (possibly with some new and exciting
+bugs of its own) port of the elisp package Reazon.  Elisp using this
+package should mostly run if you replace =reazon-= with =reazon:=.
