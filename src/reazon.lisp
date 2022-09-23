@@ -275,7 +275,7 @@ This primitive goal always fails."
              (funcall (conj ,@goals)
                       ,stream))))))
 
-(defmacro defrel (name varlist &optional docstring &body goals)
+(defmacro defrel (name varlist &body (&optional docstring &rest goals))
   ;; keep this nasty docstring logic
   ;; away from the relation definition
   (cond
