@@ -24,12 +24,25 @@
 (defvar *false*
   '#:false)
 
+(defclass r-variable ()
+  ((%name :initarg :name)))
+(defmethod print-object ((o r-variable) s)
+  (print-unreadable-object (o s)
+    (format s "?~s" (slot-value o '%name))))
+
 (defun make-variable (name)
-  (vector name))
+  (let ((cache (load-time-value #-sbcl(make-hash-table :test 'cl:equal)
+                                #+sbcl(make-hash-table :test 'cl:equal
+                                                       :weakness :key))))
+    (multiple-value-bind (result bound-p)
+        (gethash name cache)
+      (if bound-p
+          result
+          (setf (gethash name cache)
+                (make-instance 'r-variable :name name))))))
 
 (defun variable-p (var)
-  (and (not (stringp var))
-       (vectorp var)))
+  (typep var 'r-variable))
 
 (define-condition circular-query (error)
   ((%expr :reader circular-query-expr :initarg :expr)))
