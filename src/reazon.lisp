@@ -5,7 +5,8 @@
            #:circular-query #:circular-query-expr #:conda #:conde #:condu
            #:conj #:conj-2 #:conso #:defrel #:disj #:disj-2 #:fresh
            #:immediately-precedeso #:listo #:membero #:nullo #:pairo
-           #:precedeso #:project #:run #:run* #:set-equalo #:subseto))
+           #:precedeso #:project #:run #:run* #:set-equalo #:subseto
+           #:*occurs-check*))
 (defpackage :reazon.reify
   (:use)
   (:export))

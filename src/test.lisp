@@ -141,12 +141,13 @@
 (parachute:define-test rt-interface-circular-query
   :parent reazon
   ()
-  (parachute:fail (reazon:run* q
-                    (reazon:== q `(,q)))
-      'reazon:circular-query)
-  (parachute:fail (reazon:run 10 q
-                    (reazon:== q `(,q)))
-      'reazon:circular-query))
+  (let ((reazon:*occurs-check* t))
+    (parachute:fail (reazon:run* q
+                      (reazon:== q `(,q)))
+        'reazon:circular-query)
+    (parachute:fail (reazon:run 10 q
+                      (reazon:== q `(,q)))
+        'reazon:circular-query)))
 
 (parachute:define-test rt-interface-fresh
   :parent reazon
