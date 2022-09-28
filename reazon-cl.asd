@@ -18,6 +18,6 @@
   :depends-on (:reazon-cl
                :parachute)
   :serial t
-  :perform (test-op (o c) (symbol-call :parachute :test :reazon.test))
+  :perform (test-op (o c) (symbol-call :parachute :test-toplevel :reazon.test))
   :components ((:module "src"
                 :components ((:file "test")))))
