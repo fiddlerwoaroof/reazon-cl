@@ -15,7 +15,8 @@
   :description ""
   :author "Ed L <edward@elangley.org>"
   :license "MIT"
-  :depends-on (:parachute)
+  :depends-on (:reazon-cl
+               :parachute)
   :serial t
   :perform (test-op (o c) (symbol-call :parachute :test :reazon.test))
   :components ((:module "src"
