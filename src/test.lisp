@@ -74,7 +74,6 @@
 (parachute:define-test reazon-appendo
   :parent reazon
   ()
-  (parachute:is = 1 2)
   (rt-should-equal '((1 2 3)
                      (2 3)
                      (3)
