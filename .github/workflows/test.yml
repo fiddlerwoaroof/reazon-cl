@@ -53,6 +53,7 @@ jobs:
                --load "$HOME/quicklisp/setup.lisp" \
                --eval "(mapcar 'asdf:load-asd (directory \"*.asd\"))" \
                --eval "(ql:quickload :uiop)" \
+               --eval "(defvar cl-user::*exit-on-test-failures* t)" \
                --eval "(ql:quickload :reazon-cl/test)" \
                --eval "(handler-case (asdf:test-system :reazon-cl/test) (error () (uiop:quit 42)))" \
                --quit
