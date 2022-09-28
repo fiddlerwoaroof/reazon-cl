@@ -18,6 +18,10 @@
   :depends-on (:reazon-cl
                :parachute)
   :serial t
-  :perform (test-op (o c) (symbol-call :parachute :test :reazon.test))
+  :perform (test-op (o c)
+                    (when (eql :failed
+                               (symbol-call :parachute :status
+                                            (symbol-call :parachute :test :reazon.test)))
+                      (error "tests failed")))
   :components ((:module "src"
                 :components ((:file "test")))))
