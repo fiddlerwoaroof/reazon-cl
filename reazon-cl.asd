@@ -5,7 +5,7 @@
   :description ""
   :author "Ed L <edward@elangley.org>"
   :license "MIT"
-  :depends-on ()
+  :depends-on (:trivia)
   :serial t
   :in-order-to ((test-op (test-op :reazon-cl/test)))
   :components ((:module "src"
